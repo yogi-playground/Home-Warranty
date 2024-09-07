@@ -214,6 +214,9 @@ def main():
 
         if new_total_used > total_coverage_limit:
             st.warning(f"Warning: You have exceeded the annual coverage limit by ${new_total_used - total_coverage_limit}. This amount will be your responsibility.")
+    # Disclaimer footer
+    st.markdown("---")
+    st.write("Disclaimer: This app is for educational purposes only and may contain inaccuracies; always verify information with the your warranty provider.")
 
 if __name__ == "__main__":
     main()
