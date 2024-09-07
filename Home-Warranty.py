@@ -1,8 +1,7 @@
 import streamlit as st
 import re
 import question_db as qdb
-from streamlit_analytics import track_page_view
-
+from google_analytics import add_google_analytics
 # List of questions and answers
 def display_qa(qa):
     st.subheader(qa['question'])
@@ -35,8 +34,8 @@ def sidebar_summary():
     st.sidebar.write("Note: The service fee is always paid, but doesn't count towards your coverage limit.")
     
 def main():
-     # Add this at the beginning of your main function
-    track_page_view(tracking_id="G-V6F7JSEZW8")  # Replace with your Google Analytics tracking ID
+    tracking_id = st.secrets["google_credentials"]["tracking_id"]
+    add_google_analytics(tracking_id)  # Add this at the beginning of your main function    
     st.title("Home Warranty Q&A")
     
     # Sidebar for navigation
