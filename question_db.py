@@ -132,6 +132,107 @@ def question_db():
 
         Always confirm these details directly with CHOICE Home Warranty, as specific terms can vary between individual agreements.
                 """
-            }
+            },
+                {
+        "question": "When does coverage begin and when does it end?",
+        "answer": "Coverage begins 30 days after enrollment and receipt of applicable contract fees and continues for 365 days from your start date. If you can provide proof of prior coverage through another warranty carrier, showing no lapse of warranty coverage, CHW may start your new coverage when your old policy expires."
+    },
+    {
+        "question": "How many service calls can I make?",
+        "answer": "You can make as many service calls as you need. There is no limit to the number of times you can call for covered repairs during your contract term."
+    },
+    {
+        "question": "Does a home warranty cover older systems and appliances?",
+        "answer": "Yes, a home warranty provides repair or replacement of all covered systems and appliances that were in the home and in proper operating condition on the agreement effective date, and that have been properly installed and maintained, regardless of their age, make, or model."
+    },
+    {
+        "question": "How do I know my service technician is qualified?",
+        "answer": "All CHW Service Vendors are pre-screened, licensed, and independently insured. Performance is constantly monitored to ensure quality work and professionalism. Your satisfaction is their biggest priority."
+    },
+    {
+        "question": "Can I renew each year?",
+        "answer": "Yes, the plan may be renewable. In that event, you will be notified of the prevailing rate and terms of renewal."
+    },
+    {
+        "question": "Why should I renew my CHW Warranty if I haven't made any service calls?",
+        "answer": "Your home systems or appliances can break down at any time - usually when you need them most. That's why it's important to continue the protection and peace of mind you get from your Choice Home Warranty."
+    },
+    {
+        "question": "What is the process for making a service request?",
+        "answer": "When a covered system or appliance breaks down, simply contact the Claims Department at (888) 531-5403 or file your claim online at www.ChoiceHomeWarranty.com."
+    },
+    {
+        "question": "How is a service appointment scheduled?",
+        "answer": "Once you submit your claim, you will be assigned a pre-screened, licensed, and insured service technician to handle your request. CHW will provide you with their contact information so you can schedule a mutually convenient appointment."
+    },
+    {
+        "question": "How does the service fee work?",
+        "answer": "The service technician will collect the deductible from you upon arrival. If your service request covers more than one item, or if more than one trade is needed to complete your repair (e.g. electrician and plumber), multiple deductibles may apply."
+    },
+    {
+        "question": "What happens after the service technician diagnoses the issue?",
+        "answer": "The service technician will diagnose the claim and contact CHW with the details. CHW will then determine coverage eligibility and the best course of action - repair, replacement, or possibly a claim buyout."
+    },
+    {
+        "question": "Is there a feedback process after the service is completed?",
+        "answer": "Yes, after your service has been completed, you will receive a survey asking for feedback about your experience. Your feedback allows CHW to improve their business and promote the quality of their service to potential customers."
+    },
+    {
+        "question": "What is the average life expectancy of critical appliances/home systems?",
+        "answer": "According to Home Repair and Remodel, Marshall & Swift L.P. (2004), the average life expectancy of nine critical appliances/home systems is 13 years, and the likelihood of failure of one of these systems in a given year is 68%."
+    },
+    {
+        "question": "How does a home warranty affect home sales?",
+        "answer": "According to the National Home Warranty Association, homes on the market with a home warranty included sell on average 50% faster than homes without. Business Week Magazine reports that homes with home warranties return a sales price that averages 3% higher."
+    },
+    {
+        "question": "Do buyers prefer homes with warranties?",
+        "answer": "According to a Gallup Poll, 8 out of 10 buyers prefer to buy a home with a home warranty."
+    },
+    {
+        "question": "What is the average cost range for home system or appliance repairs?",
+        "answer": "According to Home Repair and Remodel, Marshall & Swift L.P. (2004), a home system or appliance repair can range from $65 to $2,000, and replacement averages $1,085."
+    },
+    {
+        "question": "What is the square footage limit for covered homes?",
+        "answer": "This Agreement covers occupied homes under 5,000 square feet, unless an appropriate fee is paid."
+    },
+    {
+        "question": "Are pre-existing conditions covered?",
+        "answer": "No, known or unknown pre-existing conditions are not covered."
+    },
+    {
+        "question": "How quickly does CHW begin contacting Service Providers after a service request?",
+        "answer": "Upon request for service, CHW will begin contacting Service Provider(s) within 4 hours."
+    },
+    {
+        "question": "Does CHW reimburse for services performed without prior approval?",
+        "answer": "No, CHW will not reimburse for services performed without prior approval."
+    },
+    {
+        "question": "What happens if work performed under the Agreement fails within 30 days?",
+        "answer": "If work performed under this Agreement should fail within 30 days, CHW will correct the failure without a Service Fee."
+    },
+    {
+        "question": "Who selects the Service Provider?",
+        "answer": "CHW has the sole right to select the Service Provider."
+    },
+    {
+        "question": "What is excluded from the refrigerator coverage?",
+        "answer": "Audio/Visual equipment and internet connection components are excluded from refrigerator coverage."
+    },
+    {
+        "question": "What is the coverage limit for well pump repairs?",
+        "answer": "CHW will pay up to $500 for access, diagnosis and repair and/or replacement of well pump components."
+    },
+    {
+        "question": "What is the coverage limit for septic tank pumping?",
+        "answer": "CHW will pay up to $250 per Agreement term for access, diagnosis and repair and/or replacement related to septic tank pumping."
+    },
+    {
+        "question": "What is the coverage limit for sprinkler system repairs?",
+        "answer": "CHW will pay up to $500 for access, diagnosis and repair and/or replacement of sprinkler system components."
+    }
+          
         ]
     return qa_list

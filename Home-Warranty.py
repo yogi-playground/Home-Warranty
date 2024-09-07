@@ -2,6 +2,9 @@ import streamlit as st
 import re
 import question_db as qdb
 from google_analytics import add_google_analytics
+from CoverageBreakDownSummary import display_coverage_summary
+from Cost_Estimator import display_cost_estimator
+from Max_coverage_per_item import display_max_coverage
 # List of questions and answers
 def display_qa(qa):
     st.subheader(qa['question'])
@@ -20,7 +23,7 @@ def search_qa(query):
             results.append(qa)
     return results
 def sidebar_summary():
-    st.sidebar.header("Coverage Summary")
+    st.sidebar.header("Coverage Cost Summary")
     
     st.sidebar.subheader("Service Fee")
     st.sidebar.write("$100 per service call")
@@ -43,26 +46,31 @@ def main():
     add_google_analytics(tracking_id)  # Add this at the beginning of your main function    
     st.title("Home Warranty Q&A")
     #st.write(tracking_id)
-    # Sidebar for navigation
-     # Sidebar for navigation
-    st.sidebar.header("Navigate")
+        
+     # Create buttons for navigation in a row at the top
+    col1, col2, col3, col4, col5 = st.columns(5)
     
+    with col1:
+        if st.button("View All Question"):
+            st.session_state.page = "View All Q&A"
+    with col2:
+        if st.button("Search Information"):
+            st.session_state.page = "Search Q&A"
+    with col3:
+        if st.button("Your Cost Estimator"):
+            st.session_state.page = "Cost Estimator"
+    with col4:
+        if st.button("Coverage Summary"):
+            st.session_state.page = "Coverage Summary"
+    with col5:
+        if st.button("Max Coverage / Item"):
+            st.session_state.page = "Max Coverage" 
      
      # Use session state to keep track of the current page
     if 'page' not in st.session_state:
         st.session_state.page = "View All Q&A"
     
-    # Create buttons for navigation
-    if st.sidebar.button("View All Q&A"):
-        st.session_state.page = "View All Q&A"
-    if st.sidebar.button("Search Q&A"):
-        st.session_state.page = "Search Q&A"
-    if st.sidebar.button("Cost Estimator"):
-        st.session_state.page = "Cost Estimator"
-
-    # Sidebar summary section
-    sidebar_summary()
-    
+    # Display content based on the selected page
     if st.session_state.page == "View All Q&A":
         st.header("All Questions and Answers")
         display_qa_collapsible(qdb.question_db())
@@ -73,52 +81,21 @@ def main():
         if search_query:
             results = search_qa(search_query)
             if results:
-                for qa in results:
-                    display_qa(qa)
+                display_qa_collapsible(results)
             else:
                 st.write("No results found.")
 
-    elif  st.session_state.page == "Cost Estimator":
-        st.header("Cost Estimator")
-        st.write("Estimate your potential costs based on the information provided:")
-        service_fee = st.number_input("Service Fee", min_value=100, value=100)
-        repair_cost = st.slider("Estimated Repair Cost:", min_value=1, max_value=3000, value=0, step=25)
-        replacement_cost = st.slider("Estimated Replacement Cost:", min_value=1, max_value=10000, value=0, step=50)
-        previously_used = st.number_input("Previously Used Amount (if any but service not incldued)", min_value=0, max_value=3000, value=00, step=50)
-        total_coverage_limit = 3000
-        remaining_coverage = total_coverage_limit - previously_used
-        current_repair_cost=0
-        current_replacement_cost=0
-        current_cost = 0
-        if repair_cost > 0:
-            current_repair_cost = min(repair_cost, remaining_coverage)
-        elif replacement_cost > 0:
-            current_replacement_cost = min(replacement_cost, remaining_coverage)
-        else:
-            current_cost = 0
+    elif st.session_state.page == "Cost Estimator":
+        display_cost_estimator()
+    elif st.session_state.page == "Coverage Summary":
+       display_coverage_summary()
+    elif st.session_state.page == "Max Coverage":
+        display_max_coverage()
 
-        total_cost =  current_repair_cost +current_replacement_cost
-        
-        new_total_used = previously_used + total_cost-service_fee
-        new_remaining_coverage = total_coverage_limit - new_total_used
 
-        st.write(f"Estimated Total Cost for This Service: ${total_cost}")
-        st.write(f"Amount you need to inclduing Service Fee: ${service_fee}")
-        st.write(f"Estimated Total Cost covered: ${total_cost-service_fee}")
-        
-        st.write(f"Total Amount Used (Including This Service): ${new_total_used}")
-        st.write(f"Remaining Coverage: ${new_remaining_coverage}")
-
-        st.write("""
-        **Note:** 
-        - The total coverage limit is $3000 per year.
-        - You always pay the service fee for each service call.
-        - The warranty covers repair or replacement costs up to the remaining coverage limit.
-        - This is a rough estimate based on the information provided. Actual costs may vary.
-        """)
-
-        if new_total_used > total_coverage_limit:
-            st.warning(f"Warning: You have exceeded the annual coverage limit by ${new_total_used - total_coverage_limit}. This amount will be your responsibility.")
+    # Sidebar summary section
+    sidebar_summary()
+    
     # Disclaimer footer
     st.markdown("---")
     st.write("Disclaimer: This app is for educational purposes only and may contain inaccuracies; always verify information with the your warranty provider.")
