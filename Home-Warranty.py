@@ -8,6 +8,11 @@ def display_qa(qa):
     st.markdown(qa['answer'])
     st.write("---")
     
+def display_qa_collapsible(qa_list):
+    for qa in qa_list:
+        with st.expander(f"**{qa['question']}**", expanded=False):  # Make the question bold
+            st.write(qa['answer'])
+            
 def search_qa(query):
     results = []
     for qa in qdb.question_db():
@@ -60,8 +65,7 @@ def main():
     
     if st.session_state.page == "View All Q&A":
         st.header("All Questions and Answers")
-        for qa in qdb.question_db():
-            display_qa(qa)
+        display_qa_collapsible(qdb.question_db())
 
     elif st.session_state.page == "Search Q&A":
         st.header("Search Questions and Answers")
