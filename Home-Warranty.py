@@ -1,109 +1,9 @@
 import streamlit as st
 import re
 import question_db as qdb
+from streamlit_analytics import track_page_view
+
 # List of questions and answers
-qa_list1 = [
-    {
-        "question": "What is the process for determining if an item is repairable or needs replacement?",
-        "answer": "The service technician will diagnose the claim and contact CHOICE Home Warranty with the details. The company then determines coverage eligibility and the best course of action - repair, replacement, or possibly a claim buyout."
-    },
-    {
-        "question": "How do you handle repairs for items that are no longer under manufacturer warranty?",
-        "answer": "CHOICE Home Warranty covers all systems and appliances that were in proper working condition at the start of the agreement, regardless of age, make, or model."
-    },
-    {
-        "question": "In what situations would I be eligible for a full replacement rather than a repair?",
-        "answer": "The document doesn't specify exact situations, but mentions that replacement is one possible outcome after the technician's diagnosis and the company's assessment."
-    },
-    {
-        "question": "How do you determine the age and condition of an item when assessing repair vs. replacement?",
-        "answer": "The document doesn't provide specific information on this process."
-    },
-    {
-        "question": "What happens if parts for my covered item are no longer available?",
-        "answer": "The document doesn't explicitly address this scenario."
-    },
-    {
-        "question": "Are there any out-of-pocket costs beyond the service fee for repairs or replacements?",
-        "answer": "The document mentions a service fee (deductible) but doesn't specify additional out-of-pocket costs."
-    },
-    {
-        "question": "How do you determine the value of a replacement item if mine cannot be repaired?",
-        "answer": "The document doesn't provide specific information on this process."
-    },
-    {
-        "question": "If a more expensive model is the only available replacement, who covers the difference in cost?",
-        "answer": "The document doesn't address this specific scenario."
-    },
-    {
-        "question": "Are there any coverage limits for high-end or luxury appliances?",
-        "answer": "The document doesn't mention specific limits for high-end appliances."
-    },
-    {
-        "question": "Do you offer any options for upgrading to a better model when replacing an item?",
-        "answer": "The document doesn't mention upgrade options."
-    },
-    {
-        "question": "What is your typical response time for emergency vs. non-emergency service requests?",
-        "answer": "The document states that they begin contacting Service Providers within 4 hours of a service request."
-    },
-    {
-        "question": "How long does it usually take from the initial service request to the completion of a repair?",
-        "answer": "The document doesn't provide a specific timeframe for completion of repairs."
-    },
-    {
-        "question": "Are there different SLAs for different types of covered items (e.g., HVAC vs. appliances)?",
-        "answer": "The document doesn't mention different SLAs for various items."
-    },
-    {
-        "question": "What factors might cause delays in service, and how are these communicated to customers?",
-        "answer": "The document mentions that in some circumstances, it could take more than 48 hours for a Service Provider to accept the request."
-    },
-    {
-        "question": "Do you offer any guarantees on the quality or durability of repairs?",
-        "answer": "The document states that if work performed fails within 30 days, they will correct the failure without an additional Service Fee."
-    },
-    {
-        "question": "If a repair takes longer than expected, do you offer any compensation or temporary solutions?",
-        "answer": "The document doesn't mention compensation or temporary solutions for extended repair times."
-    },
-    {
-        "question": "What options do I have if I'm not satisfied with the quality of a repair or replacement?",
-        "answer": "The document doesn't specifically address options for dissatisfaction with repairs or replacements."
-    },
-    {
-        "question": "In case of a major system failure (e.g., HVAC), do you provide alternative accommodations?",
-        "answer": "The document doesn't mention providing alternative accommodations."
-    },
-    {
-        "question": "How do you handle situations where multiple service visits are required to fix an issue?",
-        "answer": "The document doesn't address scenarios requiring multiple service visits."
-    },
-    {
-        "question": "Is there a limit to how many times the same item can be repaired before it's replaced?",
-        "answer": "The document doesn't specify a limit on repairs before replacement."
-    },
-    {
-        "question": "What happens if damage occurs to my property during a repair?",
-        "answer": "The document doesn't address property damage during repairs."
-    },
-    {
-        "question": "How do you handle pre-existing conditions that are discovered during a service call?",
-        "answer": "The agreement states that known or unknown pre-existing conditions are not covered."
-    },
-    {
-        "question": "Are there any circumstances where a claim might be denied after a technician has been dispatched?",
-        "answer": "The document doesn't specify circumstances for claim denial after dispatch."
-    },
-    {
-        "question": "What is your policy on items that fail shortly after a repair has been completed?",
-        "answer": "If work fails within 30 days, they will correct the failure without an additional Service Fee."
-    },
-    {
-        "question": "How do you ensure the security and safety of my home during service visits?",
-        "answer": "The document states that all Service Vendors are pre-screened, licensed, and independently insured."
-    }
-]
 def display_qa(qa):
     st.subheader(qa['question'])
     st.markdown(qa['answer'])
@@ -135,6 +35,8 @@ def sidebar_summary():
     st.sidebar.write("Note: The service fee is always paid, but doesn't count towards your coverage limit.")
     
 def main():
+     # Add this at the beginning of your main function
+    track_page_view(tracking_id="G-V6F7JSEZW8")  # Replace with your Google Analytics tracking ID
     st.title("Home Warranty Q&A")
     
     # Sidebar for navigation
