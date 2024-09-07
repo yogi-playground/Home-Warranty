@@ -37,7 +37,7 @@ def main():
     tracking_id = st.secrets["google_credentials"]["tracking_id"]
     add_google_analytics(tracking_id)  # Add this at the beginning of your main function    
     st.title("Home Warranty Q&A")
-    
+    st.write(tracking_id)
     # Sidebar for navigation
      # Sidebar for navigation
     st.sidebar.header("Navigate")
